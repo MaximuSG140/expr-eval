@@ -18,7 +18,7 @@ public:
 																			{Operation::SUB, 0},
 																			{Operation::MUL, 1},
 																			{Operation::DIV, 1} });
-	std::string CvtToString(std::string expr);
+	std::string CvtToString(const std::string& expr);
 	std::vector<Token> CvtToTokenSeq(const std::string& expr);
 private:
 	std::unordered_map<Operation, size_t> priorities_;

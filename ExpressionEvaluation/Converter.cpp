@@ -1,5 +1,6 @@
 #include "Converter.h"
 
+#include <algorithm>
 #include <stack>
 #include <stdexcept>
 
@@ -24,6 +25,12 @@ Converter::Converter(std::unordered_map<Operation, size_t> priorities)
 std::string Converter::CvtToString(const std::string& expr)
 {
 	std::string res;
+	res.reserve(expr.length() - std::count_if(expr.begin(),
+													expr.end(),
+													[](const char c)
+													{
+														return c == '(' || c == ')';
+													}));
 	std::stack<Token>  proxy_stack;
 	ExprTokenizer tokens(expr);
 	while (tokens.HasTokens())
