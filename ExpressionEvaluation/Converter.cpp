@@ -5,7 +5,7 @@
 
 #include "ExprTokenizer.h"
 
-Operation CvtToEnum(char operator_char)
+Operation CvtToEnum(const char operator_char)
 {
 	switch(operator_char)
 	{
@@ -21,8 +21,54 @@ Converter::Converter(std::unordered_map<Operation, size_t> priorities)
 	:priorities_(std::move(priorities))
 {}
 
-std::string Converter::CvtToString(std::string expr)
-{}
+std::string Converter::CvtToString(const std::string& expr)
+{
+	std::string res;
+	std::stack<Token>  proxy_stack;
+	ExprTokenizer tokens(expr);
+	while (tokens.HasTokens())
+	{
+		Token current_token = tokens.GetToken();
+		if (current_token.type == TokenType::VALUE)
+		{
+			res += "\"" + current_token.char_token + "\"";
+			continue;
+		}
+		if (current_token.char_token == "(")
+		{
+			proxy_stack.push(current_token);
+			continue;
+		}
+		if (current_token.char_token == ")")
+		{
+			while (proxy_stack.top().char_token != "(")
+			{
+				res += proxy_stack.top().char_token;
+				proxy_stack.pop();
+			}
+			proxy_stack.pop();
+			continue;
+		}
+
+		auto get_prior = [&](const Token& t)
+		{
+			return  priorities_.at(CvtToEnum(t.char_token[0]));
+		};
+
+		while (get_prior(proxy_stack.top()) >= get_prior(current_token))
+		{
+			res += proxy_stack.top().char_token;
+			proxy_stack.pop();
+		}
+		proxy_stack.push(current_token);
+	}
+	while (!proxy_stack.empty())
+	{
+		res += proxy_stack.top().char_token;
+		proxy_stack.pop();
+	}
+	return res;
+}
 
 std::vector<Token> Converter::CvtToTokenSeq(const std::string& expr)
 {
