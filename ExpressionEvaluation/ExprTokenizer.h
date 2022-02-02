@@ -11,7 +11,7 @@ public:
 	bool HasTokens() const;
 	Token GetToken();
 private:
-	std::string char_expression_;
+	std::string char_expr_;
 	size_t cursor_ = 0;
 	std::set<char> spec_symbols_;
 };
