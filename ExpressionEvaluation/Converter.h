@@ -11,6 +11,8 @@ enum class Operation
 	DIV
 };
 
+Operation CvtToEnum(char operator_char);
+
 class Converter
 {
 public:

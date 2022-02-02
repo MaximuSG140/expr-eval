@@ -7,7 +7,7 @@
 class ExprTokenizer
 {
 public:
-	explicit ExprTokenizer(std::string expression, std::set<char>spec_chars = {'+', '-', '*', '/'});
+	explicit ExprTokenizer(std::string expression, std::set<char>spec_chars = {'+', '-', '*', '/', '(', ')'});
 	bool HasTokens() const;
 	Token GetToken();
 private:

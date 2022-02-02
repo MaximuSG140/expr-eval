@@ -13,7 +13,7 @@ ExprTokenizer::ExprTokenizer(std::string expression, std::set<char> spec_chars)
 
 bool ExprTokenizer::HasTokens() const
 {
-	return cursor_ == char_expr_.length();
+	return cursor_ != char_expr_.length();
 }
 
 Token ExprTokenizer::GetToken()
@@ -27,6 +27,6 @@ Token ExprTokenizer::GetToken()
 		cursor_++;
 		return { TokenType::OPERATOR, std::string{*lt_it} };
 	}
-	cursor_ = rt_it - lt_it;
+	cursor_ = rt_it - char_expr_.begin();
 	return { TokenType::VALUE, std::string(lt_it, rt_it) };
 }

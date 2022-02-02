@@ -111,7 +111,8 @@ std::vector<Token> Converter::CvtToTokenSeq(const std::string& expr)
 			return  priorities_.at(CvtToEnum(t.char_token[0]));
 		};
 
-		while(get_prior(proxy_stack.top()) >= get_prior(current_token))
+		while(!proxy_stack.empty() && proxy_stack.top().char_token != "(" &&
+			get_prior(proxy_stack.top()) >= get_prior(current_token))
 		{
 			res.push_back(proxy_stack.top());
 			proxy_stack.pop();
