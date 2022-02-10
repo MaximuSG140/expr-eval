@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ExpressionEvaluation.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="ExprTokenizer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
