@@ -1,7 +1,6 @@
-#include "Edit.h"
+#include "pch.h"
 
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Text.hpp>
+#include "Edit.h"
 
 #include "Utility.h"
 

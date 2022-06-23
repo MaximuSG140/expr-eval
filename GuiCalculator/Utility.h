@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/System/Vector2.hpp>
+#include "pch.h"
 
 template<typename I1, typename I2>
 sf::Vector2<I1> ConvertFrom(const sf::Vector2<I2>& converting_value)

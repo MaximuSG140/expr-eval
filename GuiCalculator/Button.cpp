@@ -1,8 +1,7 @@
+#include "pch.h"
+
 #include "Button.h"
 
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Text.hpp>
 
 Button::Button(const sf::Vector2u& size,
                const sf::Vector2f& position,
@@ -19,14 +18,18 @@ void Button::draw(sf::RenderWindow& window) const
 	sf::RectangleShape body(size_);
 	body.setPosition(position_);
 	body.setFillColor(sf::Color::Cyan);
-	body.setOutlineThickness(5);
+	body.setOutlineThickness(1);
 	body.setOutlineColor({200, 200, 200});
 	window.draw(body);
 	sf::Font font;
-	font.loadFromFile("OpenSans-Regular.ttf");
+	auto success = font.loadFromFile("OpenSans-Regular.ttf");
+	if(!success)
+	{
+		throw std::runtime_error("Error loading font");
+	}
 	sf::String line(text_.c_str());
-	sf::Text printable_text(line, font);
-	printable_text.setPosition(position_);
+	sf::Text printable_text(line, font, TEXT_CHARACTER_SIZE);
+	printable_text.setPosition(getPositionForPrintingCenteredText());
 	printable_text.setFillColor(sf::Color::Black);
 	window.draw(printable_text);
 }
@@ -52,4 +55,12 @@ bool Button::checkoutPosition(const sf::Vector2f& mouse_position) const
 void Button::onClick() const
 {
 	click_handler_();
+}
+
+sf::Vector2f Button::getPositionForPrintingCenteredText() const
+{
+	float x = size_.x / 2 - text_.size() * TEXT_CHARACTER_SIZE / 2;
+	float y = size_.y / 2 - TEXT_CHARACTER_SIZE / 2;
+	return { position_.x + x,
+		position_.y + y };
 }

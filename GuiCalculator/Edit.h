@@ -1,7 +1,5 @@
 #pragma once
-#include <string>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/System/Vector2.hpp>
+#include "pch.h"
 
 class Edit
 {

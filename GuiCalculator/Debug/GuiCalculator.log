@@ -1,3 +1,11 @@
-﻿  Application.cpp
+﻿  pch.cpp
+  main.cpp
+  NotificationWindow.cpp
+  EvaluationHistory.cpp
+c:\users\stepa\documents\github\expr-eval\guicalculator\evaluationhistory.cpp(37): warning C4018: >: несоответствие типов со знаком и без знака
+  Edit.cpp
+  Button.cpp
+  Application.cpp
+  Создание кода...
   GuiCalculator.vcxproj -> C:\Users\stepa\Documents\GitHub\expr-eval\ExpressionEvaluation\Debug\GuiCalculator.exe
   GuiCalculator.vcxproj -> C:\Users\stepa\Documents\GitHub\expr-eval\ExpressionEvaluation\Debug\GuiCalculator.pdb (Full PDB)

@@ -1,5 +1,8 @@
+#include "pch.h"
+
 #include "Application.h"
 #include "Evaluate.h"
+#include "NotificationWindow.h"
 #include "Utility.h"
 
 Application::Application(const unsigned window_width,
@@ -7,9 +10,10 @@ Application::Application(const unsigned window_width,
 	:main_window_(sf::VideoMode(std::max(window_width, MINIMAL_POSSIBLE_WINDOW_WIDTH),
 			std::max(window_height, MINIMAL_POSSIBLE_WINDOW_HEIGHT)),
 		"Calculator"),
-		expression_field_(calculateEditSize(main_window_.getSize()),
+	expression_field_(calculateEditSize(main_window_.getSize()),
 		calculateEditPosition(main_window_.getSize()),
-		"")
+		""),
+	history_(MAX_HISTORY_SIZE)
 {
 	initializeButtons();
 	main_window_.setKeyRepeatEnabled(false);
@@ -186,11 +190,27 @@ char Application::getCharacterPressed(const sf::Event::KeyEvent& event)
 	}
 }
 
+void Application::notifyUser(const std::string& what)
+{
+	NotificationWindow window(what);
+	window.waitForClose();
+}
+
 void Application::evaluateInput()
 {
 	auto expression = expression_field_.getText();
-	auto result = std::to_string(Evaluate(expression));
-	expression_field_.setText(result);
+	try
+	{
+		auto result = std::to_string(Evaluate(expression));
+		expression_field_.setText(result);
+		history_.addRecord(expression);
+		history_.reset();
+	}
+	catch (std::runtime_error& e)
+	{
+		notifyUser(e.what());
+	}
+	
 }
 
 void Application::initializeButtons()
@@ -385,6 +405,21 @@ void Application::initializeButtons()
 	{
 		auto expression = expression_field_.getText();
 		expression.push_back('/');
+		expression_field_.setText(expression);
+	});
+	buttons_.emplace_back(calculateDefaultButtonSize(main_window_.getSize()),
+		calculateButtonPosition(main_window_.getSize(),
+			{ 4,3 }),
+		"^",
+		[&]()
+	{
+		if(!history_.hasRecord())
+		{
+			notifyUser("History is empty");
+			return;
+		}
+		auto expression = history_.getRecord();
+		history_.moveToPrevious();
 		expression_field_.setText(expression);
 	});
 }

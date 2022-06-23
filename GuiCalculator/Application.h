@@ -1,15 +1,16 @@
 #pragma once
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
+#include "pch.h"
 
 #include "Button.h"
 #include "Edit.h"
+#include "EvaluationHistory.h"
 
 class Application
 {
 public:
 	constexpr static unsigned MINIMAL_POSSIBLE_WINDOW_WIDTH = 500;
 	constexpr static unsigned MINIMAL_POSSIBLE_WINDOW_HEIGHT = 500;
+	constexpr static int MAX_HISTORY_SIZE = 5;
 
 	explicit Application(unsigned window_width,
 		unsigned window_height);
@@ -18,6 +19,7 @@ private:
 	sf::RenderWindow main_window_;
 	std::vector<Button> buttons_;
 	Edit expression_field_;
+	EvaluationHistory history_;
 	static sf::Vector2u calculateEditSize(const sf::Vector2u& window_size);
 	static sf::Vector2f calculateEditPosition(const sf::Vector2u& window_size);
 	static sf::Vector2u calculateDefaultButtonSize(const sf::Vector2u& window_size);
@@ -27,6 +29,7 @@ private:
 	void redrawWindow();
 	void runEventLoop();
 	static char getCharacterPressed(const sf::Event::KeyEvent& event);
+	static void notifyUser(const std::string& what);
 	void evaluateInput();
 	void initializeButtons();
 };
