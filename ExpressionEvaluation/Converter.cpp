@@ -4,17 +4,22 @@
 #include <stack>
 #include <stdexcept>
 
-#include "ExprTokenizer.h"
+#include "ExpressionTokenizer.h"
 
-Operation CvtToEnum(const char operator_char)
+Operation ConvertOperationCharacterToEnum(const char operation_character)
 {
-	switch(operator_char)
+	switch(operation_character)
 	{
-	case '+': return Operation::ADD;
-	case '-': return Operation::SUB;
-	case '*': return Operation::MUL;
-	case '/': return Operation::DIV;
-	default: throw std::runtime_error("Wrong op-character");
+	case '+':
+		return Operation::ADD;
+	case '-':
+		return Operation::SUB;
+	case '*':
+		return Operation::MUL;
+	case '/':
+		return Operation::DIV;
+	default: 
+		throw std::runtime_error("Wrong op-character");
 	}
 }
 
@@ -22,82 +27,82 @@ Converter::Converter(std::unordered_map<Operation, size_t> priorities)
 	:priorities_(std::move(priorities))
 {}
 
-std::string Converter::CvtToString(const std::string& expr)
+std::string Converter::convertToString(const std::string& expr)
 {
-	std::string res;
-	res.reserve(expr.length() - std::count_if(expr.begin(),
+	std::string result;
+	result.reserve(expr.length() - std::count_if(expr.begin(),
 													expr.end(),
 													[](const char c)
 													{
 														return c == '(' || c == ')';
 													}));
-	std::stack<Token>  proxy_stack;
-	ExprTokenizer tokens(expr);
-	while (tokens.HasTokens())
+	std::stack<Token> proxy_stack;
+	ExpressionTokenizer tokens(expr);
+	while (tokens.hasTokens())
 	{
-		Token current_token = tokens.GetToken();
+		auto current_token = tokens.getToken();
 		if (current_token.type == TokenType::VALUE)
 		{
-			res += "\"" + current_token.char_token + "\"";
+			result += "\"" + current_token.character_value + "\"";
 			continue;
 		}
-		if (current_token.char_token == "(")
+		if (current_token.character_value == "(")
 		{
 			proxy_stack.push(current_token);
 			continue;
 		}
-		if (current_token.char_token == ")")
+		if (current_token.character_value == ")")
 		{
-			while (proxy_stack.top().char_token != "(")
+			while (proxy_stack.top().character_value != "(")
 			{
-				res += proxy_stack.top().char_token;
+				result += proxy_stack.top().character_value;
 				proxy_stack.pop();
 			}
 			proxy_stack.pop();
 			continue;
 		}
 
-		auto get_prior = [&](const Token& t)
+		auto get_priority = [&](const Token& t)
 		{
-			return  priorities_.at(CvtToEnum(t.char_token[0]));
+			return priorities_.at(ConvertOperationCharacterToEnum(t.character_value[0]));
 		};
 
-		while (get_prior(proxy_stack.top()) >= get_prior(current_token))
+		while (get_priority(proxy_stack.top()) >= get_priority(current_token))
 		{
-			res += proxy_stack.top().char_token;
+			result += proxy_stack.top().character_value;
 			proxy_stack.pop();
 		}
 		proxy_stack.push(current_token);
 	}
 	while (!proxy_stack.empty())
 	{
-		res += proxy_stack.top().char_token;
+		result += proxy_stack.top().character_value;
 		proxy_stack.pop();
 	}
-	return res;
+	return result;
 }
 
-std::vector<Token> Converter::CvtToTokenSeq(const std::string& expr)
+std::vector<Token> Converter::convertToTokenSequence(const std::string& expr)
 {
 	std::vector<Token> res;
 	std::stack<Token>  proxy_stack;
-	ExprTokenizer tokens(expr);
-	while(tokens.HasTokens())
+	ExpressionTokenizer tokens(expr);
+	while(tokens.hasTokens())
 	{
-		Token current_token = tokens.GetToken();
+		auto current_token = tokens.getToken();
 		if(current_token.type == TokenType::VALUE)
 		{
 			res.push_back(current_token);
 			continue;
 		}
-		if(current_token.char_token == "(")
+		if(current_token.character_value == "(")
 		{
 			proxy_stack.push(current_token);
 			continue;
 		}
-		if(current_token.char_token == ")")
+		if(current_token.character_value == ")")
 		{
-			while(proxy_stack.top().char_token != "(")
+			while(proxy_stack.top().character_value != "(")
 			{
 				res.push_back(proxy_stack.top());
 				proxy_stack.pop();
@@ -106,13 +111,13 @@ std::vector<Token> Converter::CvtToTokenSeq(const std::string& expr)
 			continue;
 		}
 
-		auto get_prior = [&](const Token& t)
+		auto get_priority = [&](const Token& t)
 		{
-			return  priorities_.at(CvtToEnum(t.char_token[0]));
+			return  priorities_.at(ConvertOperationCharacterToEnum(t.character_value[0]));
 		};
 
-		while(!proxy_stack.empty() && proxy_stack.top().char_token != "(" &&
-			get_prior(proxy_stack.top()) >= get_prior(current_token))
+		while(!proxy_stack.empty() && proxy_stack.top().character_value != "(" &&
+			get_priority(proxy_stack.top()) >= get_priority(current_token))
 		{
 			res.push_back(proxy_stack.top());
 			proxy_stack.pop();

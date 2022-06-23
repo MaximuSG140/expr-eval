@@ -8,34 +8,34 @@
 int Evaluate(const std::string& expr)
 {
 	Converter c;
-	auto tokens = c.CvtToTokenSeq(expr);
+	auto tokens = c.convertToTokenSequence(expr);
 	std::stack<int> values;
 	for(auto cur_token : tokens)
 	{
 		if(cur_token.type == TokenType::VALUE)
 		{
-			values.push(std::stoi(cur_token.char_token));
+			values.push(std::stoi(cur_token.character_value));
 		}
 		else
 		{
-			int fst = values.top();
+			auto first_value = values.top();
 			values.pop();
-			int scd = values.top();
+			auto second_value = values.top();
 			values.pop();
-			std::swap(fst, scd);
-			switch(CvtToEnum(cur_token.char_token[0]))
+			std::swap(first_value, second_value);
+			switch(ConvertOperationCharacterToEnum(cur_token.character_value[0]))
 			{
 			case Operation::ADD:
-				values.push(fst + scd);
+				values.push(first_value + second_value);
 				break;
 			case Operation::SUB:
-				values.push(fst - scd);
+				values.push(first_value - second_value);
 				break;
 			case Operation::MUL:
-				values.push(fst * scd);
+				values.push(first_value * second_value);
 				break;
 			case Operation::DIV:
-				values.push(fst / scd);
+				values.push(first_value / second_value);
 				break;
 			default: 
 				throw std::runtime_error("Bad enum");

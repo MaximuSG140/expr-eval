@@ -10,5 +10,5 @@ enum class TokenType
 struct Token
 {
 	TokenType type;
-	std::string char_token;
+	std::string character_value;
 };
