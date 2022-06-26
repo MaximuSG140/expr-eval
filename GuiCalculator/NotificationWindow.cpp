@@ -4,16 +4,16 @@
 
 NotificationWindow::NotificationWindow(std::string notification_text)
 	:window_(sf::VideoMode(WIDTH, HEIGHT), 
-		"Notification",
-		sf::Style::Titlebar | sf::Style::Close),
-	notification_(std::move(notification_text)),
+	         "Notification",
+	         sf::Style::Titlebar | sf::Style::Close),
 	close_button_({BUTTON_WIDTH, BUTTON_HEIGHT},
-		{BUTTON_X, BUTTON_Y},
-		"Ok",
-		[&]()
-		{
-			window_.close();
-		})
+	              {BUTTON_X, BUTTON_Y},
+	              "Ok",
+	              [&]()
+	              {
+		              window_.close();
+	              }),
+	notification_(std::move(notification_text))
 {
 	window_.requestFocus();
 	window_.clear(sf::Color::White);

@@ -37,9 +37,25 @@ void Edit::draw(sf::RenderWindow& window) const
 	{
 		throw std::runtime_error("Error loading font");
 	}
-	sf::Text printable_text(line, font);
+	sf::Text printable_text(line, font, calculateOptimalLetterSize());
 	printable_text.setFillColor(sf::Color::Black);
 	printable_text.setOutlineThickness(0);
-	printable_text.setPosition(position_);
+	printable_text.setPosition(calculateCenteredTextPosition());
 	window.draw(printable_text);
+}
+
+sf::Vector2f Edit::calculateCenteredTextPosition()const
+{
+	auto letter_size = calculateOptimalLetterSize();
+	return { position_.x,
+		position_.y + size_.y / 2 - letter_size / 2 };
+}
+
+unsigned Edit::calculateOptimalLetterSize() const
+{
+	if(text_.empty())
+	{
+		return 0;
+	}
+	return std::min(size_.y, size_.x / text_.size());
 }

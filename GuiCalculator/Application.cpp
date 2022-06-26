@@ -113,6 +113,10 @@ void Application::runEventLoop()
 			if(!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
 			{
 				auto character = getCharacterPressed(event.key);
+				if(character == '\0')
+				{
+					break;
+				}
 				auto expression = expression_field_.getText();
 				expression.push_back(character);
 				expression_field_.setText(expression);
@@ -134,6 +138,10 @@ char Application::getCharacterPressed(const sf::Event::KeyEvent& event)
 	switch(event.code)
 	{
 	case sf::Keyboard::Num0:
+		if(event.shift)
+		{
+			return ')';
+		}
 		return '0';
 	case sf::Keyboard::Num1:
 		return '1';
@@ -150,8 +158,16 @@ char Application::getCharacterPressed(const sf::Event::KeyEvent& event)
 	case sf::Keyboard::Num7:
 		return '7';
 	case sf::Keyboard::Num8:
+		if (event.shift)
+		{
+			return '*';
+		}
 		return '8';
 	case sf::Keyboard::Num9:
+		if (event.shift)
+		{
+			return '(';
+		}
 		return '9';
 	case sf::Keyboard::Slash:
 		return '/';

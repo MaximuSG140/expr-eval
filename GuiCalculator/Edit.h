@@ -16,5 +16,7 @@ private:
 	sf::Vector2u size_;
 	sf::Vector2f position_;
 	std::string text_;
+	sf::Vector2f calculateCenteredTextPosition()const;
+	unsigned calculateOptimalLetterSize()const;
 };
 
