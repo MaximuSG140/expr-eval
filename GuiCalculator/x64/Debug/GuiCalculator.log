@@ -1,0 +1,13 @@
+﻿  NotificationWindow.cpp
+c:\users\maxim\source\repos\expr-eval\guicalculator\widgets\notificationwindow.cpp(1): fatal error C1083: Не удается открыть файл предкомпилированный заголовок: x64\Debug\GuiCalculator.pch: No such file or directory,
+  Edit.cpp
+c:\users\maxim\source\repos\expr-eval\guicalculator\widgets\edit.cpp(1): fatal error C1083: Не удается открыть файл предкомпилированный заголовок: x64\Debug\GuiCalculator.pch: No such file or directory,
+  Button.cpp
+c:\users\maxim\source\repos\expr-eval\guicalculator\widgets\button.cpp(1): fatal error C1083: Не удается открыть файл предкомпилированный заголовок: x64\Debug\GuiCalculator.pch: No such file or directory,
+  Application.cpp
+c:\users\maxim\source\repos\expr-eval\guicalculator\widgets\application.cpp(1): fatal error C1083: Не удается открыть файл предкомпилированный заголовок: x64\Debug\GuiCalculator.pch: No such file or directory,
+  EvaluationHistory.cpp
+c:\users\maxim\source\repos\expr-eval\guicalculator\utility\evaluationhistory.cpp(1): fatal error C1083: Не удается открыть файл предкомпилированный заголовок: x64\Debug\GuiCalculator.pch: No such file or directory,
+  pch.cpp
+c:\users\maxim\source\repos\expr-eval\guicalculator\pch.cpp(1): fatal error C1083: Не удается открыть файл предкомпилированный заголовок: x64\Debug\GuiCalculator.pch: No such file or directory,
+  Создание кода...

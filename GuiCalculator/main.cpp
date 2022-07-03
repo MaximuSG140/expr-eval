@@ -1,5 +1,6 @@
 #include "pch.h"
-#include "Application.h"
+
+#include "Widgets/Application.h"
 
 int main()
 {

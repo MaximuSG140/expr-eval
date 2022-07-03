@@ -1,5 +1,3 @@
-﻿  Edit.cpp
-  Application.cpp
-  Создание кода...
-  GuiCalculator.vcxproj -> C:\Users\stepa\Documents\GitHub\expr-eval\ExpressionEvaluation\Debug\GuiCalculator.exe
-  GuiCalculator.vcxproj -> C:\Users\stepa\Documents\GitHub\expr-eval\ExpressionEvaluation\Debug\GuiCalculator.pdb (Full PDB)
+﻿  main.cpp
+  GuiCalculator.vcxproj -> C:\Users\Maxim\source\repos\expr-eval\ExpressionEvaluation\Debug\GuiCalculator.exe
+  GuiCalculator.vcxproj -> C:\Users\Maxim\source\repos\expr-eval\ExpressionEvaluation\Debug\GuiCalculator.pdb (Full PDB)
