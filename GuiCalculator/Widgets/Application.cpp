@@ -167,6 +167,12 @@ char Application::getCharacterPressed(const sf::Event::KeyEvent& event)
 			return '(';
 		}
 		return '9';
+	case sf::Keyboard::Equal:
+		if(event.shift)
+		{
+			return '+';
+		}
+		return '\0';
 	case sf::Keyboard::Slash:
 		return '/';
 	case sf::Keyboard::Dash:

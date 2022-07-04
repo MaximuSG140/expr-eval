@@ -38,12 +38,39 @@ public:
 	 */
 	void draw(sf::RenderWindow& window)const;
 
-
+	/**
+	 * \brief
+	 * Checks if mouse is hovered over button and, in such case calls click handler.
+	 * \param mouse_position
+	 * Mouse position to check.
+	 */
 	void tryActivate(const sf::Vector2f& mouse_position)const;
-	bool checkoutPosition(const sf::Vector2f& mouse_position)const;
-	void onClick()const;
+
+	
 private:
+	/**
+	 * \brief
+	 * Calculates upper-left corner of centered button label.
+	 * \return
+	 * Position inside button to print in center.
+	 */
 	sf::Vector2f getPositionForPrintingCenteredText()const;
+
+	/**
+	 * \brief
+	 * Checks if mouse is hovered over button
+	 * \param mouse_position
+	 * Mouse position to check.
+	 * \return
+	 * True if cursor is on button, false in other case.
+	 */
+	bool checkoutPosition(const sf::Vector2f& mouse_position)const;
+
+	/**
+	 * \brief
+	 * Performs on-click action.
+	 */
+	void onClick()const;
 
 	sf::Vector2f size_;
 	sf::Vector2f position_;
