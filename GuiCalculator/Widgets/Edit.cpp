@@ -61,12 +61,23 @@ sf::Vector2f Edit::calculateCenteredTextPosition()const
 		position_.y + size_.y / 2 - letter_size / 2 };
 }
 
-unsigned Edit::calculateOptimalLetterSize() const //TODO: implement binary search for optimal size
+unsigned Edit::calculateOptimalLetterSize() const
 {
-	if(text_.empty())
+	unsigned left_border = 0, right_border = size_.y;
+	sf::String line(text_);
+	sf::Text printing_text(line, font_, right_border);
+	while(right_border - left_border > 1)
 	{
-		return 0;
+		unsigned middle_value = (right_border + left_border) / 2;
+		printing_text.setCharacterSize(middle_value);
+		if(printing_text.getLocalBounds().width < size_.x)
+		{
+			left_border = middle_value;
+		}
+		else
+		{
+			right_border = middle_value;
+		}
 	}
-	return std::min(size_.y,
-		size_.x / text_.size());
+	return left_border;
 }

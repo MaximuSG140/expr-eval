@@ -12,6 +12,8 @@
 class Edit
 {
 public:
+
+
 	/**
 	 * \brief
 	 * Constructs edit in drawable state.

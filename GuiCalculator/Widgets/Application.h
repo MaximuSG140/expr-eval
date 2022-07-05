@@ -137,13 +137,14 @@ private:
 	/**
 	 * \brief
 	 * Fills internal storage with buttons which usually appear in calculator.
+	 * \
 	 * Button map:\n
 	 * ___________\n
 	 * |7 8 9 + =|\n
-	 * |4 5 6 - < |\n
-	 * |1 2 3 * C |\n
-	 * |( ) 0 / ^  |\n
-	 * |__________|\n
+	 * |4 5 6 - <|\n
+	 * |1 2 3 * C|\n
+	 * |( ) 0 / ^|\n
+	 * |_________|\n
 	 */
 	void initializeButtons();
 };
