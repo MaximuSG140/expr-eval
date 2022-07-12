@@ -25,7 +25,8 @@ NotificationWindow::NotificationWindow(std::string notification_text)
 		throw std::runtime_error("Error loading font");
 	}
 	sf::Text text(line, font);
-	text.setPosition({ 0, 0 });
+	text.setPosition({ WIDTH / 2 - text.getLocalBounds().width / 2,
+		TEXT_Y });
 	text.setFillColor(sf::Color::Black);
 	window_.draw(text);
 	close_button_.draw(window_);

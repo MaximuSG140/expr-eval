@@ -226,7 +226,7 @@ void Application::evaluateInput()
 		history_.addRecord(expression);
 		history_.reset();
 	}
-	catch (std::runtime_error& e)
+	catch (std::exception& e)
 	{
 		notifyUser(e.what());
 	}

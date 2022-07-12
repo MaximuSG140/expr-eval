@@ -12,6 +12,7 @@ public:
 	constexpr static unsigned BUTTON_HEIGHT = 75;
 	constexpr static float BUTTON_X = WIDTH / 2 - BUTTON_WIDTH / 2;
 	constexpr static float BUTTON_Y = 150;
+	constexpr static float TEXT_Y = 50;
 
 	explicit NotificationWindow(std::string notification_text);
 	void waitForClose();

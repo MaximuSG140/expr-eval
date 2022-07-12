@@ -3,7 +3,9 @@
 
 EvaluationHistory::EvaluationHistory(const int max_record_amount)
 	:max_record_amount_(max_record_amount)
-{}
+{
+	current_record_ = expression_list_.end();
+}
 
 void EvaluationHistory::flush()
 {
