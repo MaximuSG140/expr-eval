@@ -17,7 +17,7 @@ NotificationWindow::NotificationWindow(std::string notification_text)
 {
 	window_.requestFocus();
 	window_.clear(sf::Color::White);
-	sf::String line(notification_.c_str());
+	sf::String line(notification_);
 	sf::Font font;
 	auto success = font.loadFromFile("Fonts/OpenSans-Regular.ttf");
 	if (!success)

@@ -27,7 +27,7 @@ void Button::draw(sf::RenderWindow& window) const
 	{
 		throw std::runtime_error("Error loading font");
 	}
-	sf::String line(text_.c_str());
+	sf::String line(text_);
 	sf::Text printable_text(line, font, TEXT_CHARACTER_SIZE);
 	printable_text.setPosition(getPositionForPrintingCenteredText());
 	printable_text.setFillColor(sf::Color::Black);

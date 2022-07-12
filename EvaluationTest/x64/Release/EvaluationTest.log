@@ -1,0 +1,5 @@
+﻿  pch.cpp
+  test.cpp
+  ExpressionEvaluation.lib(Evaluate.obj) : найден .netmodule MSIL или модуль, откомпилированный с параметром /GL; перезапускается компоновка с параметром /LTCG; добавьте /LTCG в командную строку компоновки для повышения производительности компоновщика
+gtest.lib(gtest-all.obj) : error LNK2001: эхЁрчЁх°хээ√щ тэх°эшщ ёшьтюы "__std_reverse_trivially_swappable_4"
+C:\Users\Maxim\source\repos\expr-eval\ExpressionEvaluation\x64\Release\EvaluationTest.exe : fatal error LNK1120: эхЁрчЁх°хээ√ї тэх°эшї ¤ыхьхэЄют: 1

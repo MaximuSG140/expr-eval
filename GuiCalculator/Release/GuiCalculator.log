@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  main.cpp
+  EvaluationHistory.cpp
+  Application.cpp
+  Button.cpp
+  Edit.cpp
+  NotificationWindow.cpp
+  Создание кода
+  All 2420 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  GuiCalculator.vcxproj -> C:\Users\Maxim\source\repos\expr-eval\ExpressionEvaluation\Release\GuiCalculator.exe
+  GuiCalculator.vcxproj -> C:\Users\Maxim\source\repos\expr-eval\ExpressionEvaluation\Release\GuiCalculator.pdb (Full PDB)

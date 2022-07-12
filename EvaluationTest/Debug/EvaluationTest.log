@@ -1,2 +1,5 @@
-﻿  test.cpp
-  EvaluationTest.vcxproj -> C:\Users\stepa\Documents\GitHub\expr-eval\ExpressionEvaluation\Debug\EvaluationTest.exe
+﻿  pch.cpp
+  test.cpp
+ExpressionEvaluation.lib(Evaluate.obj) : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+gtestd.lib(gtest-all.obj) : error LNK2019: ссылка на неразрешенный внешний символ ___std_reverse_trivially_swappable_4 в функции "void __cdecl std::_Reverse_unchecked1<enum testing::internal::edit_distance::EditType *>(enum testing::internal::edit_distance::EditType * const,enum testing::internal::edit_distance::EditType * const,struct std::integral_constant<unsigned int,4>)" (??$_Reverse_unchecked1@PAW4EditType@edit_distance@internal@testing@@@std@@YAXQAW4EditType@edit_distance@internal@testing@@0U?$integral_constant@I$03@0@@Z)
+C:\Users\Maxim\source\repos\expr-eval\ExpressionEvaluation\Debug\EvaluationTest.exe : fatal error LNK1120: неразрешенных внешних элементов: 1

@@ -71,7 +71,7 @@ void Application::redrawWindow()
 
 void Application::runEventLoop()
 {
-	sf::Event event;
+	sf::Event event{};
 	bool left_mouse_button_pressed = false;
 	while (main_window_.isOpen())
 	{

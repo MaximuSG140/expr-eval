@@ -30,12 +30,6 @@ void Edit::setText(const std::string& text)
 	text_ = text;
 }
 
-/**
- * \brief
- * Draws edit on specified window.
- * \param window
- * Window where edit will be drown.
- */
 void Edit::draw(sf::RenderWindow& window) const
 {
 	sf::RectangleShape body(ConvertFrom<float, unsigned>(size_));
@@ -44,7 +38,7 @@ void Edit::draw(sf::RenderWindow& window) const
 	body.setOutlineThickness(5);
 	body.setOutlineColor({200, 200, 200});
 	window.draw(body);
-	sf::String line(text_.c_str());
+	sf::String line(text_);
 	sf::Text printable_text(line, 
 		font_, 
 		calculateOptimalLetterSize());
